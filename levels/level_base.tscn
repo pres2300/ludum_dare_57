@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cka801hk8vkug"]
+[gd_scene load_steps=8 format=3 uid="uid://cka801hk8vkug"]
 
 [ext_resource type="PackedScene" uid="uid://ce7c1x043ucfe" path="res://player/player.tscn" id="1_hk6b7"]
 [ext_resource type="PackedScene" uid="uid://davkh4cagnbs2" path="res://level_components/floor_le.tscn" id="2_vmt1o"]
 [ext_resource type="PackedScene" uid="uid://335g8lrgno7f" path="res://level_components/floor_re.tscn" id="3_da5si"]
+[ext_resource type="PackedScene" uid="uid://be7i6held6qex" path="res://level_components/floor_bottom.tscn" id="4_da5si"]
+[ext_resource type="PackedScene" uid="uid://b5ox7vv4rmlu5" path="res://items/jet_pack.tscn" id="5_ep22m"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gxxp6"]
 normal = Vector2(1, 0)
@@ -31,3 +33,9 @@ position = Vector2(97, 450)
 
 [node name="floor_re2" parent="." instance=ExtResource("3_da5si")]
 position = Vector2(0, 900)
+
+[node name="floor_re3" parent="." instance=ExtResource("4_da5si")]
+position = Vector2(0, 9000)
+
+[node name="JetPack" parent="." instance=ExtResource("5_ep22m")]
+position = Vector2(585, 8992)
