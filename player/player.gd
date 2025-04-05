@@ -25,6 +25,9 @@ func get_input():
 	elif jump and has_jetpack:
 		velocity.y = jump_speed
 
+func equip_jetpack():
+	has_jetpack = true
+
 func _ready():
 	camera.limit_left = 0
 	camera.limit_right = get_viewport().get_visible_rect().size.x
