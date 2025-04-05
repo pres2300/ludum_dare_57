@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce7c1x043ucfe"]
+[gd_scene load_steps=7 format=3 uid="uid://ce7c1x043ucfe"]
 
 [ext_resource type="Texture2D" uid="uid://cwkh1m0ss5733" path="res://icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bypvvate53xcl" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://deswwu522edyn" path="res://assets/sprites/jetpack_equipped.png" id="3_g1dw6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkbax"]
 radius = 16.0312
+
+[sub_resource type="Curve" id="Curve_g1dw6"]
+_data = [Vector2(0.0113636, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0786518), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_yw30f"]
+colors = PackedColorArray(0.74902, 0.223529, 0, 1, 0.447059, 0.368627, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 3
@@ -18,3 +26,21 @@ texture = ExtResource("1_oul6g")
 shape = SubResource("CircleShape2D_rkbax")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="JetpackEquipped" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-21, 1)
+texture = ExtResource("3_g1dw6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="JetpackEquipped"]
+position = Vector2(0, 8)
+amount = 30
+lifetime = 0.2
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(1.7, 1)
+spread = 0.0
+scale_amount_min = 0.95
+scale_amount_max = 1.8
+scale_amount_curve = SubResource("Curve_g1dw6")
+color_ramp = SubResource("Gradient_yw30f")
