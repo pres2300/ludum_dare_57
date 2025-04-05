@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cka801hk8vkug"]
+
+[ext_resource type="PackedScene" uid="uid://ce7c1x043ucfe" path="res://player/player.tscn" id="1_hk6b7"]
+[ext_resource type="PackedScene" uid="uid://davkh4cagnbs2" path="res://level_components/floor_le.tscn" id="2_vmt1o"]
+[ext_resource type="PackedScene" uid="uid://335g8lrgno7f" path="res://level_components/floor_re.tscn" id="3_da5si"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gxxp6"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hk6b7"]
+normal = Vector2(-1, 0)
+
+[node name="LevelBase" type="Node2D"]
+
+[node name="LeftBoundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary"]
+shape = SubResource("WorldBoundaryShape2D_gxxp6")
+
+[node name="RightBoundary" type="StaticBody2D" parent="."]
+position = Vector2(1152, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary"]
+shape = SubResource("WorldBoundaryShape2D_hk6b7")
+
+[node name="Player" parent="." instance=ExtResource("1_hk6b7")]
+position = Vector2(574, -101)
+
+[node name="floor_re" parent="." instance=ExtResource("2_vmt1o")]
+position = Vector2(97, 450)
+
+[node name="floor_re2" parent="." instance=ExtResource("3_da5si")]
+position = Vector2(0, 900)
