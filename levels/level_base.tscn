@@ -39,3 +39,6 @@ position = Vector2(0, 9000)
 
 [node name="JetPack" parent="." instance=ExtResource("5_ep22m")]
 position = Vector2(585, 8992)
+
+[node name="JetPack2" parent="." instance=ExtResource("5_ep22m")]
+position = Vector2(598, 442)

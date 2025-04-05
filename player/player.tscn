@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce7c1x043ucfe"]
+[gd_scene load_steps=8 format=3 uid="uid://ce7c1x043ucfe"]
 
 [ext_resource type="Texture2D" uid="uid://cwkh1m0ss5733" path="res://icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bypvvate53xcl" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://deswwu522edyn" path="res://assets/sprites/jetpack_equipped.png" id="3_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://ckls47eyc4kjw" path="res://assets/sounds/jetpack_ongoing.mp3" id="4_yw30f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkbax"]
 radius = 16.0312
@@ -44,3 +45,7 @@ scale_amount_min = 0.95
 scale_amount_max = 1.8
 scale_amount_curve = SubResource("Curve_g1dw6")
 color_ramp = SubResource("Gradient_yw30f")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="JetpackEquipped"]
+stream = ExtResource("4_yw30f")
+parameters/looping = false
