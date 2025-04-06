@@ -6,6 +6,8 @@ extends Area2D
 
 @onready var pickup_sound = $PickupSound
 
+signal obtained
+
 func _ready() -> void:
 	var tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops().set_parallel(false)
@@ -15,6 +17,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		obtained.emit()
 		hide()
 		pickup_sound.play()
 		body.equip(item_name)

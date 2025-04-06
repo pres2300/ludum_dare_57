@@ -108,8 +108,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rkbax"]
-radius = 16.0312
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
+size = Vector2(32, 32)
 
 [sub_resource type="Curve" id="Curve_g1dw6"]
 _data = [Vector2(0.0113636, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0786518), 0.0, 0.0, 0, 0]
@@ -126,7 +126,7 @@ fill_from = Vector2(0.53211, 1)
 fill_to = Vector2(0.509174, 0)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 3
+collision_mask = 15
 script = ExtResource("1_rkbax")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -134,8 +134,8 @@ sprite_frames = SubResource("SpriteFrames_8t03j")
 animation = &"up"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_rkbax")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+shape = SubResource("RectangleShape2D_boad6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

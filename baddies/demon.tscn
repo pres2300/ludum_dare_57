@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d30pbtwgp18q"]
+
+[ext_resource type="Script" uid="uid://ci6f06bhfws7i" path="res://baddies/demon.gd" id="1_grsrt"]
+[ext_resource type="Texture2D" uid="uid://cwtm71qq44rb0" path="res://assets/sprites/baddies/demon.png" id="1_yhf7o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yhf7o"]
+radius = 188.0
+
+[node name="Demon" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_grsrt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yhf7o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 50)
+shape = SubResource("CircleShape2D_yhf7o")

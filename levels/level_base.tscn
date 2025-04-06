@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cka801hk8vkug"]
+[gd_scene load_steps=15 format=3 uid="uid://cka801hk8vkug"]
 
 [ext_resource type="Script" uid="uid://dtct4fj6otmen" path="res://levels/level_base.gd" id="1_5f4n4"]
 [ext_resource type="Texture2D" uid="uid://x58l7s6nlu4" path="res://assets/sprites/background.png" id="1_cnvg6"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://be7i6held6qex" path="res://level_components/floor_bottom.tscn" id="4_da5si"]
 [ext_resource type="PackedScene" uid="uid://bn8ofpsn2ulqb" path="res://items/item_pedestal.tscn" id="6_ts4ud"]
 [ext_resource type="PackedScene" uid="uid://b5dhsqs1sovlx" path="res://items/jetpack.tscn" id="7_jd1fy"]
+[ext_resource type="PackedScene" uid="uid://d30pbtwgp18q" path="res://baddies/demon.tscn" id="10_5f4n4"]
 
 [sub_resource type="Gradient" id="Gradient_p3adb"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -78,3 +79,6 @@ position = Vector2(865, 445)
 
 [node name="Jetpack2" parent="." instance=ExtResource("7_jd1fy")]
 position = Vector2(865, 433)
+
+[node name="Demon" parent="." instance=ExtResource("10_5f4n4")]
+position = Vector2(612, 9562)
