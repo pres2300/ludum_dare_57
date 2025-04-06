@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cka801hk8vkug"]
+[gd_scene load_steps=20 format=3 uid="uid://cka801hk8vkug"]
 
 [ext_resource type="Script" uid="uid://dtct4fj6otmen" path="res://levels/level_base.gd" id="1_5f4n4"]
 [ext_resource type="Texture2D" uid="uid://x58l7s6nlu4" path="res://assets/sprites/background.png" id="1_cnvg6"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dxkjfucvg7y1j" path="res://items/bag_of_rocks.tscn" id="11_twsyw"]
 [ext_resource type="PackedScene" uid="uid://iknltu4mxj2a" path="res://items/knife.tscn" id="12_6hf62"]
 [ext_resource type="PackedScene" uid="uid://bgawnhvhvgmyy" path="res://items/gun.tscn" id="13_kuw7y"]
+[ext_resource type="PackedScene" uid="uid://44gfujrq8665" path="res://baddies/simple_enemy.tscn" id="14_gei2l"]
 
 [sub_resource type="Gradient" id="Gradient_p3adb"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -25,6 +26,8 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hk6b7"]
 normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gei2l"]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_5f4n4")
@@ -60,22 +63,22 @@ position = Vector2(1152, 0)
 shape = SubResource("WorldBoundaryShape2D_hk6b7")
 
 [node name="Player" parent="." instance=ExtResource("1_hk6b7")]
-position = Vector2(574, -101)
+position = Vector2(577, 388)
 
 [node name="floor_re" parent="." instance=ExtResource("2_vmt1o")]
-position = Vector2(97, 450)
+position = Vector2(625, 466)
 
 [node name="floor_re2" parent="." instance=ExtResource("3_da5si")]
-position = Vector2(0, 900)
+position = Vector2(528, 916)
 
 [node name="floor_re3" parent="." instance=ExtResource("4_da5si")]
-position = Vector2(0, 9000)
+position = Vector2(577, 9016)
 
 [node name="ItemPedestal" parent="." instance=ExtResource("6_ts4ud")]
 position = Vector2(586, 8995)
 
 [node name="Jetpack" parent="." instance=ExtResource("7_jd1fy")]
-position = Vector2(586, 8983)
+position = Vector2(586, 8982)
 
 [node name="ItemPedestal2" parent="." instance=ExtResource("6_ts4ud")]
 position = Vector2(865, 445)
@@ -97,3 +100,18 @@ position = Vector2(792, 895)
 
 [node name="Gun" parent="." instance=ExtResource("13_kuw7y")]
 position = Vector2(792, 883)
+
+[node name="SimpleEnemy" parent="." instance=ExtResource("14_gei2l")]
+position = Vector2(1011, 434)
+
+[node name="SimpleEnemy2" parent="." instance=ExtResource("14_gei2l")]
+position = Vector2(113, 883)
+
+[node name="WinBoundary" type="Area2D" parent="."]
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinBoundary"]
+position = Vector2(-1, 1)
+shape = SubResource("WorldBoundaryShape2D_gei2l")
+
+[connection signal="body_entered" from="WinBoundary" to="." method="_on_win_boundary_body_entered"]

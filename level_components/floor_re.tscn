@@ -1,19 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://335g8lrgno7f"]
+[gd_scene load_steps=4 format=3 uid="uid://335g8lrgno7f"]
 
-[ext_resource type="Texture2D" uid="uid://cwkh1m0ss5733" path="res://icon.svg" id="1_gcqgs"]
+[ext_resource type="Texture2D" uid="uid://cnifpvkjx2wno" path="res://assets/sprites/platform.png" id="1_gsuhd"]
+[ext_resource type="PackedScene" uid="uid://ccu6w7g6etoua" path="res://level_components/enemy_boundary.tscn" id="2_gsuhd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsuhd"]
-size = Vector2(1054, 122)
+size = Vector2(1054, 33)
 
 [node name="floor_re" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(526.5, 61)
-scale = Vector2(8.24219, 0.9375)
-texture = ExtResource("1_gcqgs")
+texture = ExtResource("1_gsuhd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(528, 61)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_gsuhd")
+
+[node name="EnemeyBoundary" parent="." instance=ExtResource("2_gsuhd")]
+position = Vector2(526, -16)

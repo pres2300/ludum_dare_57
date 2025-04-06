@@ -55,7 +55,8 @@ func swipe_knife():
 func throw_rock():
 	throw_rock_sound.play()
 	var b = rock_scene.instantiate()
-	add_child(b)
+	get_tree().root.add_child(b)
+	b.position = global_position
 	if player_sprite.flip_h:
 		b.apply_impulse(Vector2(-750, -100), b.global_position)
 	else:
@@ -85,9 +86,9 @@ func get_input():
 	var right: bool = Input.is_action_pressed("ui_right")
 	var left: bool = Input.is_action_pressed("ui_left")
 	var jump: bool = Input.is_action_pressed("jump")
-	var attack: bool = Input.is_action_pressed("attack")
+	var attack_input: bool = Input.is_action_pressed("attack")
 
-	if attack:
+	if attack_input:
 		attack()
 
 	velocity.x = 0.0
@@ -136,20 +137,22 @@ func get_input():
 		elif velocity.y > 0.1:
 			player_sprite.play("down")
 
-func equip(name: String):
-	match name:
+func equip(item_name: String):
+	match item_name:
 		"jetpack":
 			has_jetpack = true
 			jetpack_sprite.show()
 		"gun":
 			has_gun = true
 			has_knife = false
+			knife.hide()
 			has_bag_of_rocks = false
 			gun.show()
 		"knife":
 			has_knife = true
 			has_bag_of_rocks = false
 			has_gun = false
+			gun.hide()
 			knife.show()
 		"bag_of_rocks":
 			has_bag_of_rocks = true
@@ -183,9 +186,10 @@ func _physics_process(delta: float) -> void:
 	get_input()
 	move_and_slide()
 
-func _on_knife_equipped_area_entered(area: Area2D) -> void:
+func _on_knife_equipped_body_entered(body: Node2D) -> void:
 	# Only damage if the player is in the attack tween
 	if not attacking:
 		return
 
-	# TODO
+	if body.is_in_group("enemy"):
+		body.take_damage()

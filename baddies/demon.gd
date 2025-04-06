@@ -5,6 +5,9 @@ extends CharacterBody2D
 var can_move: bool = false
 var target = null
 
+func take_damage():
+	print("demon take damage")
+
 func spawn():
 	# The demon already exists, but this gets it moving and chasing
 	target = get_tree().get_first_node_in_group("player")

@@ -15,3 +15,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	canvas_modulate.set_gradient(player.position.y)
 	canvas_modulate_bg.set_gradient(player.position.y)
+
+func _on_win_boundary_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("you win!")
