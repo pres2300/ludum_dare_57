@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var has_jetpack: bool = false
 
 @onready var camera = $Camera2D
-@onready var player_sprite = $Sprite2D
+@onready var player_sprite = $AnimatedSprite2D
 @onready var jetpack_sprite = $JetpackEquipped
 @onready var jetpack_exhaust = $JetpackEquipped/CPUParticles2D
 @onready var jetpack_sound = $JetpackEquipped/AudioStreamPlayer2D
@@ -41,6 +41,18 @@ func get_input():
 		jetpack_exhaust.emitting = false
 		jetpack_light.hide()
 		jetpack_sound.stop()
+
+	if is_on_floor():
+		if abs(velocity.x) > 0.0:
+			player_sprite.play("walk")
+		else:
+			player_sprite.play("idle")
+	else:
+		if velocity.y < -0.1:
+			player_sprite.play("up")
+		elif velocity.y > 0.1:
+			player_sprite.play("down")
+
 
 
 func equip(name: String):
