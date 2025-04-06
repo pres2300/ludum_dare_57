@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5dhsqs1sovlx"]
 
 [ext_resource type="PackedScene" uid="uid://b5ox7vv4rmlu5" path="res://items/item_base.tscn" id="1_j2igg"]
-[ext_resource type="Texture2D" uid="uid://bm3ii2qhmonq" path="res://assets/sprites/jetpack.png" id="2_51a8o"]
+[ext_resource type="Texture2D" uid="uid://bm3ii2qhmonq" path="res://assets/sprites/items/jetpack.png" id="2_51a8o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jq2te"]
 size = Vector2(20, 18)

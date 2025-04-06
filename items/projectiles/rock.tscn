@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://3iknvkfi3tv8"]
+
+[ext_resource type="Script" uid="uid://ck52wa2yfeuen" path="res://items/projectiles/rock.gd" id="1_5p0ui"]
+[ext_resource type="Texture2D" uid="uid://bp8bkyi60g6jg" path="res://assets/sprites/rock.png" id="1_8olcb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5p0ui"]
+radius = 3.0
+
+[node name="Rock" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 20
+script = ExtResource("1_5p0ui")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8olcb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5p0ui")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

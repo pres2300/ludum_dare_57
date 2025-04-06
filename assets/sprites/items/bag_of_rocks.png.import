@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm3ii2qhmonq"
-path="res://.godot/imported/jetpack.png-3a080fa2976d02f6d5ce32f354e75fa8.ctex"
+uid="uid://cenj73itanhgc"
+path="res://.godot/imported/bag_of_rocks.png-3c45c4dbe8c5bb701205f78a4ebb6d07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/jetpack.png"
-dest_files=["res://.godot/imported/jetpack.png-3a080fa2976d02f6d5ce32f354e75fa8.ctex"]
+source_file="res://assets/sprites/items/bag_of_rocks.png"
+dest_files=["res://.godot/imported/bag_of_rocks.png-3c45c4dbe8c5bb701205f78a4ebb6d07.ctex"]
 
 [params]
 
