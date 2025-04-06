@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cka801hk8vkug"]
+[gd_scene load_steps=18 format=3 uid="uid://cka801hk8vkug"]
 
 [ext_resource type="Script" uid="uid://dtct4fj6otmen" path="res://levels/level_base.gd" id="1_5f4n4"]
 [ext_resource type="Texture2D" uid="uid://x58l7s6nlu4" path="res://assets/sprites/background.png" id="1_cnvg6"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://d30pbtwgp18q" path="res://baddies/demon.tscn" id="10_5f4n4"]
 [ext_resource type="PackedScene" uid="uid://dxkjfucvg7y1j" path="res://items/bag_of_rocks.tscn" id="11_twsyw"]
 [ext_resource type="PackedScene" uid="uid://iknltu4mxj2a" path="res://items/knife.tscn" id="12_6hf62"]
+[ext_resource type="PackedScene" uid="uid://bgawnhvhvgmyy" path="res://items/gun.tscn" id="13_kuw7y"]
 
 [sub_resource type="Gradient" id="Gradient_p3adb"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -90,3 +91,9 @@ position = Vector2(508, 895)
 
 [node name="Knife" parent="." instance=ExtResource("12_6hf62")]
 position = Vector2(508, 886)
+
+[node name="ItemPedestal4" parent="." instance=ExtResource("6_ts4ud")]
+position = Vector2(792, 895)
+
+[node name="Gun" parent="." instance=ExtResource("13_kuw7y")]
+position = Vector2(792, 883)

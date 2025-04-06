@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ce7c1x043ucfe"]
+[gd_scene load_steps=33 format=3 uid="uid://ce7c1x043ucfe"]
 
 [ext_resource type="Script" uid="uid://bypvvate53xcl" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://bpprm2t2q81yw" path="res://assets/sprites/player/player_down.png" id="2_boad6"]
@@ -6,11 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://3iknvkfi3tv8" path="res://items/projectiles/rock.tscn" id="2_rgyib"]
 [ext_resource type="Texture2D" uid="uid://d211dmawe1pwm" path="res://assets/sprites/player/player-Sheet.png" id="2_yw30f"]
 [ext_resource type="Texture2D" uid="uid://deswwu522edyn" path="res://assets/sprites/jetpack_equipped.png" id="3_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://cexugch4osbag" path="res://items/projectiles/bullet.tscn" id="3_yllr7"]
 [ext_resource type="Texture2D" uid="uid://bylsob7o6ool2" path="res://assets/sprites/player/player_up.png" id="4_rgyib"]
 [ext_resource type="AudioStream" uid="uid://ckls47eyc4kjw" path="res://assets/sounds/jetpack_ongoing.mp3" id="4_yw30f"]
 [ext_resource type="AudioStream" uid="uid://bjommsilf6dxh" path="res://assets/sounds/throw_rock.mp3" id="9_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://c3muuo44pa2cr" path="res://assets/sprites/items/knife.png" id="10_2ieo8"]
 [ext_resource type="AudioStream" uid="uid://ok4rado4jrra" path="res://assets/sounds/knife_swipe.mp3" id="10_ebec5"]
+[ext_resource type="Texture2D" uid="uid://ix0if6638lr2" path="res://assets/sprites/items/gun.png" id="11_ebec5"]
+[ext_resource type="AudioStream" uid="uid://i6rkm5hva566" path="res://assets/sounds/gunshot.mp3" id="13_kb6p2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
 atlas = ExtResource("2_boad6")
@@ -136,6 +139,7 @@ size = Vector2(20, 7)
 collision_mask = 15
 script = ExtResource("1_rkbax")
 rock_scene = ExtResource("2_rgyib")
+bullet_scene = ExtResource("3_yllr7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8t03j")
@@ -190,6 +194,17 @@ shape = SubResource("RectangleShape2D_2ieo8")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="KnifeEquipped"]
 stream = ExtResource("10_ebec5")
+
+[node name="GunEquipped" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(21, 0)
+texture = ExtResource("11_ebec5")
+
+[node name="Muzzle" type="Marker2D" parent="GunEquipped"]
+position = Vector2(10, -4)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GunEquipped"]
+stream = ExtResource("13_kb6p2")
 
 [node name="ThrowRockSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_hg6s5")

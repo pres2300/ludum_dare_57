@@ -7,8 +7,10 @@ extends CharacterBody2D
 @export var has_jetpack: bool = false
 @export var has_bag_of_rocks: bool = false
 @export var has_knife: bool = false
+@export var has_gun: bool = false
 
 @export var rock_scene: PackedScene
+@export var bullet_scene: PackedScene
 
 @onready var camera = $Camera2D
 @onready var player_sprite = $AnimatedSprite2D
@@ -24,19 +26,30 @@ extends CharacterBody2D
 @onready var knife_sprite = $KnifeEquipped/Sprite2D
 @onready var knife_sound = $KnifeEquipped/AudioStreamPlayer2D
 
+@onready var gun = $GunEquipped
+@onready var muzzle = $GunEquipped/Muzzle
+@onready var gun_sound = $GunEquipped/AudioStreamPlayer2D
+
 var attacking: bool = false
 var attack_timer = Timer.new()
 
 const throw_rock_timeout: float = 1.0
 const swipe_knife_timeout: float = 0.5
+const gun_shoot_timeout: float = 0.1
+
+func shoot_gun():
+	gun_sound.play()
+	var b = bullet_scene.instantiate()
+	get_tree().root.add_child(b)
+	b.start(muzzle.global_transform, player_sprite.flip_h)
 
 func swipe_knife():
 	knife_sound.play()
 	var tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	if knife_sprite.flip_h:
-		tween.tween_property(knife, "position", knife.position - Vector2(35.0, 0), 0.5/2.0).from_current()
+		tween.tween_property(knife, "position", knife.position - Vector2(35.0, 0), swipe_knife_timeout/2.0).from_current()
 	else:
-		tween.tween_property(knife, "position", knife.position + Vector2(35.0, 0), 0.5/2.0).from_current()
+		tween.tween_property(knife, "position", knife.position + Vector2(35.0, 0), swipe_knife_timeout/2.0).from_current()
 	tween.tween_property(knife, "position", knife.position, 0.5/2.0)
 
 func throw_rock():
@@ -52,7 +65,12 @@ func attack():
 	if attacking:
 		return
 
-	if has_knife:
+	if has_gun:
+		attacking = true
+		attack_timer.wait_time = gun_shoot_timeout
+		attack_timer.start()
+		shoot_gun()
+	elif has_knife:
 		attacking = true
 		attack_timer.wait_time = swipe_knife_timeout
 		attack_timer.start()
@@ -80,6 +98,9 @@ func get_input():
 		jetpack_sprite.position.x = -21
 		knife.position.x = 21
 		knife_sprite.flip_h = false
+		gun.position.x = 21
+		muzzle.position.x = 10
+		gun.flip_h = false
 
 	if left:
 		velocity.x = -move_speed
@@ -87,6 +108,9 @@ func get_input():
 		jetpack_sprite.position.x = 21
 		knife.position.x = -21
 		knife_sprite.flip_h = true
+		gun.position.x = -21
+		muzzle.position.x = -10
+		gun.flip_h = true
 
 	if jump and is_on_floor() and not has_jetpack:
 		velocity.y = jump_speed
@@ -117,13 +141,20 @@ func equip(name: String):
 		"jetpack":
 			has_jetpack = true
 			jetpack_sprite.show()
+		"gun":
+			has_gun = true
+			has_knife = false
+			has_bag_of_rocks = false
+			gun.show()
 		"knife":
 			has_knife = true
 			has_bag_of_rocks = false
+			has_gun = false
 			knife.show()
 		"bag_of_rocks":
 			has_bag_of_rocks = true
 			has_knife = false
+			has_gun = false
 		_:
 			print("Item not handled in equip!")
 
@@ -153,6 +184,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_knife_equipped_area_entered(area: Area2D) -> void:
+	# Only damage if the player is in the attack tween
 	if not attacking:
 		return
 
