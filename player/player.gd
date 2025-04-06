@@ -40,9 +40,13 @@ func get_input():
 		jetpack_sound.stop()
 
 
-func equip_jetpack():
-	has_jetpack = true
-	jetpack_sprite.show()
+func equip(name: String):
+	match name:
+		"jetpack":
+			has_jetpack = true
+			jetpack_sprite.show()
+		_:
+			print("Item not handled in equip!")
 
 func _ready():
 	camera.limit_left = 0

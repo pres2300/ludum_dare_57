@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cka801hk8vkug"]
+[gd_scene load_steps=11 format=3 uid="uid://cka801hk8vkug"]
 
+[ext_resource type="Texture2D" uid="uid://x58l7s6nlu4" path="res://assets/sprites/background.png" id="1_cnvg6"]
 [ext_resource type="PackedScene" uid="uid://ce7c1x043ucfe" path="res://player/player.tscn" id="1_hk6b7"]
 [ext_resource type="PackedScene" uid="uid://davkh4cagnbs2" path="res://level_components/floor_le.tscn" id="2_vmt1o"]
 [ext_resource type="PackedScene" uid="uid://335g8lrgno7f" path="res://level_components/floor_re.tscn" id="3_da5si"]
 [ext_resource type="PackedScene" uid="uid://be7i6held6qex" path="res://level_components/floor_bottom.tscn" id="4_da5si"]
-[ext_resource type="PackedScene" uid="uid://b5ox7vv4rmlu5" path="res://items/jet_pack.tscn" id="5_ep22m"]
+[ext_resource type="PackedScene" uid="uid://b5ox7vv4rmlu5" path="res://items/item_base.tscn" id="5_ep22m"]
+[ext_resource type="PackedScene" uid="uid://bn8ofpsn2ulqb" path="res://items/item_pedestal.tscn" id="6_ts4ud"]
+[ext_resource type="PackedScene" uid="uid://b5dhsqs1sovlx" path="res://items/jetpack.tscn" id="7_jd1fy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gxxp6"]
 normal = Vector2(1, 0)
@@ -13,6 +16,17 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [node name="LevelBase" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(576, 324)
+transform = Transform2D(1, 0, 0, 1, 576, 324)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(0, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_cnvg6")
 
 [node name="LeftBoundary" type="StaticBody2D" parent="."]
 
@@ -38,7 +52,19 @@ position = Vector2(0, 900)
 position = Vector2(0, 9000)
 
 [node name="JetPack" parent="." instance=ExtResource("5_ep22m")]
-position = Vector2(585, 8992)
+position = Vector2(586, 8983)
 
 [node name="JetPack2" parent="." instance=ExtResource("5_ep22m")]
-position = Vector2(598, 442)
+position = Vector2(598, 412)
+
+[node name="ItemPedestal" parent="." instance=ExtResource("6_ts4ud")]
+position = Vector2(586, 8995)
+
+[node name="Jetpack" parent="." instance=ExtResource("7_jd1fy")]
+position = Vector2(586, 8983)
+
+[node name="ItemPedestal2" parent="." instance=ExtResource("6_ts4ud")]
+position = Vector2(865, 445)
+
+[node name="Jetpack2" parent="." instance=ExtResource("7_jd1fy")]
+position = Vector2(865, 433)

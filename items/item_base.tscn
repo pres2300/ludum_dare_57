@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ox7vv4rmlu5"]
+
+[ext_resource type="Script" uid="uid://ckbmih1ne6i7x" path="res://items/item_base.gd" id="1_amd0g"]
+[ext_resource type="AudioStream" uid="uid://knfnps013i6r" path="res://assets/sounds/item_pickup.mp3" id="2_5ufc5"]
+
+[node name="ItemBase" type="Area2D" groups=["item"]]
+collision_layer = 2
+script = ExtResource("1_amd0g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_5ufc5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
