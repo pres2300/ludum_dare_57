@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce7c1x043ucfe"]
+[gd_scene load_steps=10 format=3 uid="uid://ce7c1x043ucfe"]
 
 [ext_resource type="Texture2D" uid="uid://cwkh1m0ss5733" path="res://icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://bypvvate53xcl" path="res://player/player.gd" id="1_rkbax"]
@@ -14,6 +14,13 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_yw30f"]
 colors = PackedColorArray(0.74902, 0.223529, 0, 1, 0.447059, 0.368627, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_qjkh3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g6k8r"]
+gradient = SubResource("Gradient_qjkh3")
+fill_from = Vector2(0.53211, 1)
+fill_to = Vector2(0.509174, 0)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 3
@@ -49,3 +56,10 @@ color_ramp = SubResource("Gradient_yw30f")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="JetpackEquipped"]
 stream = ExtResource("4_yw30f")
 parameters/looping = false
+
+[node name="PointLight2D" type="PointLight2D" parent="JetpackEquipped"]
+visible = false
+position = Vector2(0, 19)
+scale = Vector2(0.09375, 0.40625)
+range_layer_min = -101
+texture = SubResource("GradientTexture2D_g6k8r")

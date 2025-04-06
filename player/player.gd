@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var jetpack_sprite = $JetpackEquipped
 @onready var jetpack_exhaust = $JetpackEquipped/CPUParticles2D
 @onready var jetpack_sound = $JetpackEquipped/AudioStreamPlayer2D
+@onready var jetpack_light = $JetpackEquipped/PointLight2D
 
 func get_input():
 	var right: bool = Input.is_action_pressed("ui_right")
@@ -33,10 +34,12 @@ func get_input():
 	elif jump and has_jetpack:
 		velocity.y = jump_speed
 		jetpack_exhaust.emitting = true
+		jetpack_light.show()
 		if not jetpack_sound.playing:
 			jetpack_sound.play()
 	elif has_jetpack:
 		jetpack_exhaust.emitting = false
+		jetpack_light.hide()
 		jetpack_sound.stop()
 
 
