@@ -43,6 +43,7 @@ const throw_rock_timeout: float = 1.0
 const swipe_knife_timeout: float = 0.5
 const gun_shoot_timeout: float = 0.1
 
+signal damage
 signal dead
 
 func take_damage():
@@ -51,6 +52,7 @@ func take_damage():
 
 	can_take_damage = false
 	health -= 1
+	damage.emit(health)
 	i_frames_timer.start(i_frames_timer_count)
 
 	if health <= 0:

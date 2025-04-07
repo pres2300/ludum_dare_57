@@ -1,11 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://cka801hk8vkug"]
+[gd_scene load_steps=24 format=3 uid="uid://cka801hk8vkug"]
 
 [ext_resource type="Script" uid="uid://dtct4fj6otmen" path="res://levels/level_base.gd" id="1_5f4n4"]
 [ext_resource type="Texture2D" uid="uid://x58l7s6nlu4" path="res://assets/sprites/background.png" id="1_cnvg6"]
 [ext_resource type="PackedScene" uid="uid://ce7c1x043ucfe" path="res://player/player.tscn" id="1_hk6b7"]
 [ext_resource type="Script" uid="uid://ct2cwym2beknk" path="res://levels/canvas_modulate.gd" id="1_p3adb"]
+[ext_resource type="Texture2D" uid="uid://dax5s4wgeamd3" path="res://assets/sprites/healthbar/healthbar_over.png" id="2_utrdv"]
 [ext_resource type="PackedScene" uid="uid://davkh4cagnbs2" path="res://level_components/floor_le.tscn" id="2_vmt1o"]
 [ext_resource type="PackedScene" uid="uid://335g8lrgno7f" path="res://level_components/floor_re.tscn" id="3_da5si"]
+[ext_resource type="Texture2D" uid="uid://c7aaruwaqw2km" path="res://assets/sprites/healthbar/healthbar_progress.png" id="3_p78dx"]
 [ext_resource type="PackedScene" uid="uid://be7i6held6qex" path="res://level_components/floor_bottom.tscn" id="4_da5si"]
 [ext_resource type="PackedScene" uid="uid://bn8ofpsn2ulqb" path="res://items/item_pedestal.tscn" id="6_ts4ud"]
 [ext_resource type="PackedScene" uid="uid://b5dhsqs1sovlx" path="res://items/jetpack.tscn" id="7_jd1fy"]
@@ -33,6 +35,28 @@ normal = Vector2(-1, 0)
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_5f4n4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/HUD/MarginContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource("2_utrdv")
+texture_progress = ExtResource("3_p78dx")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 script = ExtResource("1_p3adb")
