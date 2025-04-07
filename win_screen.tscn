@@ -1,0 +1,314 @@
+[gd_scene load_steps=43 format=3 uid="uid://be0vaebchmdmb"]
+
+[ext_resource type="FontFile" uid="uid://u02ecjjgywd3" path="res://assets/fonts/Kenney Thick.ttf" id="1_l2arl"]
+[ext_resource type="Script" uid="uid://dfjtk42y6je2m" path="res://win_screen.gd" id="1_wmwda"]
+[ext_resource type="Texture2D" uid="uid://x58l7s6nlu4" path="res://assets/sprites/background.png" id="3_vjyh7"]
+[ext_resource type="Script" uid="uid://ct2cwym2beknk" path="res://levels/canvas_modulate.gd" id="4_urkc8"]
+[ext_resource type="PackedScene" uid="uid://be7i6held6qex" path="res://level_components/floor_bottom.tscn" id="5_h2yga"]
+[ext_resource type="Script" uid="uid://bypvvate53xcl" path="res://player/player.gd" id="6_6aphv"]
+[ext_resource type="PackedScene" uid="uid://3iknvkfi3tv8" path="res://items/projectiles/rock.tscn" id="7_by6q6"]
+[ext_resource type="PackedScene" uid="uid://cexugch4osbag" path="res://items/projectiles/bullet.tscn" id="8_tc5ab"]
+[ext_resource type="Texture2D" uid="uid://bpprm2t2q81yw" path="res://assets/sprites/player/player_down.png" id="9_ev75t"]
+[ext_resource type="Texture2D" uid="uid://c8xw2o3ovb6yu" path="res://assets/sprites/player/player_idle-Sheet.png" id="10_8185n"]
+[ext_resource type="Texture2D" uid="uid://bylsob7o6ool2" path="res://assets/sprites/player/player_up.png" id="11_5wlye"]
+[ext_resource type="Texture2D" uid="uid://d211dmawe1pwm" path="res://assets/sprites/player/player-Sheet.png" id="12_u7ltu"]
+[ext_resource type="Texture2D" uid="uid://deswwu522edyn" path="res://assets/sprites/jetpack_equipped.png" id="13_wf1h6"]
+[ext_resource type="AudioStream" uid="uid://ckls47eyc4kjw" path="res://assets/sounds/jetpack_ongoing.mp3" id="14_rear3"]
+[ext_resource type="Texture2D" uid="uid://c3muuo44pa2cr" path="res://assets/sprites/items/knife.png" id="15_8ao54"]
+[ext_resource type="AudioStream" uid="uid://ok4rado4jrra" path="res://assets/sounds/knife_swipe.mp3" id="16_ebtcl"]
+[ext_resource type="Texture2D" uid="uid://ix0if6638lr2" path="res://assets/sprites/items/gun.png" id="17_esbtl"]
+[ext_resource type="AudioStream" uid="uid://i6rkm5hva566" path="res://assets/sounds/gunshot.mp3" id="18_sfeol"]
+[ext_resource type="AudioStream" uid="uid://bjommsilf6dxh" path="res://assets/sounds/throw_rock.mp3" id="19_y8nu6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wmwda"]
+font = ExtResource("1_l2arl")
+font_size = 51
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_p3adb"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pwxl4"]
+gradient = SubResource("Gradient_p3adb")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
+atlas = ExtResource("9_ev75t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
+atlas = ExtResource("10_8185n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("10_8185n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
+atlas = ExtResource("10_8185n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
+atlas = ExtResource("10_8185n")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wodsf"]
+atlas = ExtResource("11_5wlye")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjkh3"]
+atlas = ExtResource("12_u7ltu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
+atlas = ExtResource("12_u7ltu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
+atlas = ExtResource("12_u7ltu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgyib"]
+atlas = ExtResource("12_u7ltu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
+atlas = ExtResource("12_u7ltu")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l1r0s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb6p2")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ieo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebec5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yllr7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wodsf")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjkh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6k8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boad6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgyib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg6s5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oy0og"]
+size = Vector2(32, 32)
+
+[sub_resource type="Curve" id="Curve_2cqdh"]
+_data = [Vector2(0.0113636, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0786518), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fs4uf"]
+colors = PackedColorArray(0.74902, 0.223529, 0, 1, 0.447059, 0.368627, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_qjkh3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0iu4v"]
+gradient = SubResource("Gradient_qjkh3")
+fill_from = Vector2(0.53211, 1)
+fill_to = Vector2(0.509174, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v18ip"]
+size = Vector2(20, 7)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5d2ss"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1onho"]
+normal = Vector2(-1, 0)
+
+[node name="WinScreen" type="Node"]
+script = ExtResource("1_wmwda")
+
+[node name="TitleScreenUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -357.5
+offset_right = 357.5
+offset_bottom = 405.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenUI/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TitleScreenUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You win"
+label_settings = SubResource("LabelSettings_wmwda")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 445
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenUI/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RestartButton" type="Button" parent="TitleScreenUI/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_l2arl")
+theme_override_font_sizes/font_size = 40
+text = "PLAY AGAIN"
+
+[node name="TitleLevel" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="TitleLevel"]
+offset = Vector2(576, 324)
+transform = Transform2D(1, 0, 0, 1, 576, 324)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="TitleLevel/ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(0, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="TitleLevel/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("3_vjyh7")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="TitleLevel/ParallaxBackground/ParallaxLayer"]
+script = ExtResource("4_urkc8")
+gradient = SubResource("GradientTexture1D_pwxl4")
+
+[node name="floor_bottom" parent="TitleLevel" instance=ExtResource("5_h2yga")]
+position = Vector2(577, 411)
+
+[node name="Player" type="CharacterBody2D" parent="TitleLevel" groups=["player"]]
+position = Vector2(578, 378)
+collision_mask = 15
+script = ExtResource("6_6aphv")
+has_gun = true
+rock_scene = ExtResource("7_by6q6")
+bullet_scene = ExtResource("8_tc5ab")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TitleLevel/Player"]
+sprite_frames = SubResource("SpriteFrames_l1r0s")
+animation = &"up"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleLevel/Player" groups=["player"]]
+shape = SubResource("RectangleShape2D_oy0og")
+
+[node name="JetpackEquipped" type="Sprite2D" parent="TitleLevel/Player"]
+visible = false
+position = Vector2(-21, 1)
+texture = ExtResource("13_wf1h6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="TitleLevel/Player/JetpackEquipped"]
+position = Vector2(0, 8)
+amount = 30
+lifetime = 0.2
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(1.7, 1)
+spread = 0.0
+scale_amount_min = 0.95
+scale_amount_max = 1.8
+scale_amount_curve = SubResource("Curve_2cqdh")
+color_ramp = SubResource("Gradient_fs4uf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TitleLevel/Player/JetpackEquipped"]
+stream = ExtResource("14_rear3")
+parameters/looping = false
+
+[node name="PointLight2D" type="PointLight2D" parent="TitleLevel/Player/JetpackEquipped"]
+visible = false
+position = Vector2(0, 19)
+scale = Vector2(0.09375, 0.40625)
+range_layer_min = -101
+texture = SubResource("GradientTexture2D_0iu4v")
+
+[node name="KnifeEquipped" type="Area2D" parent="TitleLevel/Player"]
+visible = false
+position = Vector2(21, 0)
+collision_layer = 16
+collision_mask = 24
+
+[node name="Sprite2D" type="Sprite2D" parent="TitleLevel/Player/KnifeEquipped"]
+texture = ExtResource("15_8ao54")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleLevel/Player/KnifeEquipped"]
+shape = SubResource("RectangleShape2D_v18ip")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TitleLevel/Player/KnifeEquipped"]
+stream = ExtResource("16_ebtcl")
+
+[node name="GunEquipped" type="Sprite2D" parent="TitleLevel/Player"]
+position = Vector2(21, 0)
+texture = ExtResource("17_esbtl")
+
+[node name="Muzzle" type="Marker2D" parent="TitleLevel/Player/GunEquipped"]
+position = Vector2(10, -4)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TitleLevel/Player/GunEquipped"]
+stream = ExtResource("18_sfeol")
+
+[node name="ThrowRockSound" type="AudioStreamPlayer2D" parent="TitleLevel/Player"]
+stream = ExtResource("19_y8nu6")
+volume_db = -3.747
+
+[node name="LeftBoundary" type="StaticBody2D" parent="TitleLevel"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleLevel/LeftBoundary"]
+shape = SubResource("WorldBoundaryShape2D_5d2ss")
+
+[node name="RightBoundary" type="StaticBody2D" parent="TitleLevel"]
+position = Vector2(1152, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleLevel/RightBoundary"]
+shape = SubResource("WorldBoundaryShape2D_1onho")
+
+[connection signal="pressed" from="TitleScreenUI/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="body_entered" from="TitleLevel/Player/KnifeEquipped" to="TitleLevel/Player" method="_on_knife_equipped_body_entered"]

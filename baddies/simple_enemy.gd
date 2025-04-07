@@ -28,8 +28,8 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 
-		if collision.get_collider().name == "Player":
-			print("hit player")
+		if collision.get_collider().is_in_group("player"):
+			collision.get_collider().take_damage()
 
 		if collision.get_normal().x != 0:
 			facing = sign(collision.get_normal().x)

@@ -125,10 +125,10 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_yw30f"]
 colors = PackedColorArray(0.74902, 0.223529, 0, 1, 0.447059, 0.368627, 0, 1)
 
-[sub_resource type="Gradient" id="Gradient_qjkh3"]
+[sub_resource type="Gradient" id="Gradient_kb6p2"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g6k8r"]
-gradient = SubResource("Gradient_qjkh3")
+gradient = SubResource("Gradient_kb6p2")
 fill_from = Vector2(0.53211, 1)
 fill_to = Vector2(0.509174, 0)
 

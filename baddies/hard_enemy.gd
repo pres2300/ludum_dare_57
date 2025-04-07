@@ -20,7 +20,7 @@ func take_damage():
 	else:
 		damage_sound.play()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 
 	if can_move and is_instance_valid(target):
 		for i in get_slide_collision_count():

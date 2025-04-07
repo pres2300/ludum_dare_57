@@ -17,11 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://vgqckn05vn5g" path="res://baddies/medium_enemy.tscn" id="15_vy5pf"]
 [ext_resource type="PackedScene" uid="uid://cwyfks2lcn003" path="res://baddies/hard_enemy.tscn" id="16_ls7uu"]
 
-[sub_resource type="Gradient" id="Gradient_p3adb"]
+[sub_resource type="Gradient" id="Gradient_ls7uu"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_5f4n4"]
-gradient = SubResource("Gradient_p3adb")
+gradient = SubResource("Gradient_ls7uu")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gxxp6"]
 normal = Vector2(1, 0)
@@ -166,9 +166,6 @@ position = Vector2(626, 4302)
 
 [node name="MediumEnemy4" parent="." instance=ExtResource("15_vy5pf")]
 position = Vector2(526, 4758)
-
-[node name="SimpleEnemy5" parent="." instance=ExtResource("14_gei2l")]
-position = Vector2(258, 2731)
 
 [node name="HardEnemy" parent="." instance=ExtResource("16_ls7uu")]
 position = Vector2(529, 5791)

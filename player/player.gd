@@ -54,7 +54,6 @@ func take_damage():
 	i_frames_timer.start(i_frames_timer_count)
 
 	if health <= 0:
-		print("DEAD")
 		dead.emit()
 
 func shoot_gun():
@@ -188,9 +187,10 @@ func _i_frames_timeout():
 	can_take_damage = true
 
 func _ready():
-	camera.limit_left = 0
-	camera.limit_right = get_viewport().get_visible_rect().size.x
-	camera.limit_top = 0
+	if is_instance_valid(camera):
+		camera.limit_left = 0
+		camera.limit_right = get_viewport().get_visible_rect().size.x
+		camera.limit_top = 0
 
 	attack_timer.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child(attack_timer)
