@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cka801hk8vkug"]
+[gd_scene load_steps=22 format=3 uid="uid://cka801hk8vkug"]
 
 [ext_resource type="Script" uid="uid://dtct4fj6otmen" path="res://levels/level_base.gd" id="1_5f4n4"]
 [ext_resource type="Texture2D" uid="uid://x58l7s6nlu4" path="res://assets/sprites/background.png" id="1_cnvg6"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bgawnhvhvgmyy" path="res://items/gun.tscn" id="13_kuw7y"]
 [ext_resource type="PackedScene" uid="uid://44gfujrq8665" path="res://baddies/simple_enemy.tscn" id="14_gei2l"]
 [ext_resource type="PackedScene" uid="uid://vgqckn05vn5g" path="res://baddies/medium_enemy.tscn" id="15_vy5pf"]
+[ext_resource type="PackedScene" uid="uid://cwyfks2lcn003" path="res://baddies/hard_enemy.tscn" id="16_ls7uu"]
 
 [sub_resource type="Gradient" id="Gradient_p3adb"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -168,5 +169,17 @@ position = Vector2(526, 4758)
 
 [node name="SimpleEnemy5" parent="." instance=ExtResource("14_gei2l")]
 position = Vector2(258, 2731)
+
+[node name="HardEnemy" parent="." instance=ExtResource("16_ls7uu")]
+position = Vector2(529, 5791)
+
+[node name="HardEnemy2" parent="." instance=ExtResource("16_ls7uu")]
+position = Vector2(623, 6328)
+
+[node name="HardEnemy3" parent="." instance=ExtResource("16_ls7uu")]
+position = Vector2(111, 8983)
+
+[node name="HardEnemy4" parent="." instance=ExtResource("16_ls7uu")]
+position = Vector2(978, 8983)
 
 [connection signal="body_entered" from="WinBoundary" to="." method="_on_win_boundary_body_entered"]

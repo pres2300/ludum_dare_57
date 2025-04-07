@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 200
 @export var gravity: float = 1000.0
-@export var health: int = 5
+@export var health: int = 3
 
 @onready var death_sound = $DeathSound
 @onready var damage_sound = $DamageSound

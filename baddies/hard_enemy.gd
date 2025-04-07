@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @export var speed = 300
-@export var gravity: float = 1000.0
 @export var health: int = 3
 
 @onready var death_sound = $DeathSound
@@ -22,7 +21,6 @@ func take_damage():
 		damage_sound.play()
 
 func _physics_process(delta):
-	velocity.y += gravity*delta
 
 	if can_move and is_instance_valid(target):
 		for i in get_slide_collision_count():
@@ -31,7 +29,7 @@ func _physics_process(delta):
 			if collision.get_collider().is_in_group("player"):
 				collision.get_collider().take_damage()
 
-		velocity.x = (global_position.direction_to(target.get_global_position())*speed).x
+		velocity = global_position.direction_to(target.get_global_position())*speed
 
 	move_and_slide()
 

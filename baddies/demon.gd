@@ -33,11 +33,9 @@ func _physics_process(_delta):
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
 
-			if collision.get_collider().is_in_group("Player") and collision.get_collider().can_take_damage():
-				collision.get_collider().take_damage(5)
+			if collision.get_collider().is_in_group("player"):
+				collision.get_collider().take_damage()
 				velocity = Vector2.ZERO
-				#global_position = global_position+(collision.get_normal()*bounce_distance)
-				#bounce_back = true
 
 		velocity = global_position.direction_to(target.get_global_position())*move_speed
 		move_and_slide()
