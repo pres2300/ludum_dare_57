@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cka801hk8vkug"]
+[gd_scene load_steps=21 format=3 uid="uid://cka801hk8vkug"]
 
 [ext_resource type="Script" uid="uid://dtct4fj6otmen" path="res://levels/level_base.gd" id="1_5f4n4"]
 [ext_resource type="Texture2D" uid="uid://x58l7s6nlu4" path="res://assets/sprites/background.png" id="1_cnvg6"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://iknltu4mxj2a" path="res://items/knife.tscn" id="12_6hf62"]
 [ext_resource type="PackedScene" uid="uid://bgawnhvhvgmyy" path="res://items/gun.tscn" id="13_kuw7y"]
 [ext_resource type="PackedScene" uid="uid://44gfujrq8665" path="res://baddies/simple_enemy.tscn" id="14_gei2l"]
+[ext_resource type="PackedScene" uid="uid://vgqckn05vn5g" path="res://baddies/medium_enemy.tscn" id="15_vy5pf"]
 
 [sub_resource type="Gradient" id="Gradient_p3adb"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -90,19 +91,19 @@ position = Vector2(612, 9562)
 position = Vector2(865, 431)
 
 [node name="ItemPedestal3" parent="." instance=ExtResource("6_ts4ud")]
-position = Vector2(508, 895)
+position = Vector2(532, 2743)
 
 [node name="Knife" parent="." instance=ExtResource("12_6hf62")]
-position = Vector2(508, 886)
+position = Vector2(532, 2734)
 
 [node name="ItemPedestal4" parent="." instance=ExtResource("6_ts4ud")]
-position = Vector2(792, 895)
+position = Vector2(626, 5329)
 
 [node name="Gun" parent="." instance=ExtResource("13_kuw7y")]
-position = Vector2(792, 883)
+position = Vector2(626, 5317)
 
 [node name="SimpleEnemy" parent="." instance=ExtResource("14_gei2l")]
-position = Vector2(1011, 434)
+position = Vector2(663, 1264)
 
 [node name="SimpleEnemy2" parent="." instance=ExtResource("14_gei2l")]
 position = Vector2(113, 883)
@@ -113,5 +114,59 @@ rotation = 3.14159
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WinBoundary"]
 position = Vector2(-1, 1)
 shape = SubResource("WorldBoundaryShape2D_gei2l")
+
+[node name="floor_le" parent="." instance=ExtResource("2_vmt1o")]
+position = Vector2(625, 1296)
+
+[node name="floor_re4" parent="." instance=ExtResource("3_da5si")]
+position = Vector2(527, 1750)
+
+[node name="floor_le2" parent="." instance=ExtResource("2_vmt1o")]
+position = Vector2(625, 2292)
+
+[node name="floor_re5" parent="." instance=ExtResource("3_da5si")]
+position = Vector2(528, 2764)
+
+[node name="floor_le3" parent="." instance=ExtResource("2_vmt1o")]
+position = Vector2(625, 3325)
+
+[node name="floor_re6" parent="." instance=ExtResource("3_da5si")]
+position = Vector2(530, 3798)
+
+[node name="floor_le4" parent="." instance=ExtResource("2_vmt1o")]
+position = Vector2(625, 4334)
+
+[node name="floor_re7" parent="." instance=ExtResource("3_da5si")]
+position = Vector2(528, 4790)
+
+[node name="floor_le5" parent="." instance=ExtResource("2_vmt1o")]
+position = Vector2(625, 5351)
+
+[node name="floor_re8" parent="." instance=ExtResource("3_da5si")]
+position = Vector2(530, 5824)
+
+[node name="floor_le6" parent="." instance=ExtResource("2_vmt1o")]
+position = Vector2(625, 6360)
+
+[node name="SimpleEnemy3" parent="." instance=ExtResource("14_gei2l")]
+position = Vector2(449, 1718)
+
+[node name="SimpleEnemy4" parent="." instance=ExtResource("14_gei2l")]
+position = Vector2(685, 2260)
+
+[node name="MediumEnemy" parent="." instance=ExtResource("15_vy5pf")]
+position = Vector2(623, 3293)
+
+[node name="MediumEnemy2" parent="." instance=ExtResource("15_vy5pf")]
+position = Vector2(530, 3766)
+
+[node name="MediumEnemy3" parent="." instance=ExtResource("15_vy5pf")]
+position = Vector2(626, 4302)
+
+[node name="MediumEnemy4" parent="." instance=ExtResource("15_vy5pf")]
+position = Vector2(526, 4758)
+
+[node name="SimpleEnemy5" parent="." instance=ExtResource("14_gei2l")]
+position = Vector2(258, 2731)
 
 [connection signal="body_entered" from="WinBoundary" to="." method="_on_win_boundary_body_entered"]

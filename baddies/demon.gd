@@ -1,17 +1,32 @@
 extends CharacterBody2D
 
-@export var move_speed : int = 300
+@export var fast_move_speed : int = 300
+@export var slow_move_speed : int = 100
+@export var slow_time : int = 2 # seconds
+
+var move_speed = fast_move_speed
 
 var can_move: bool = false
 var target = null
 
+var slow_timer = Timer.new()
+
 func take_damage():
-	print("demon take damage")
+	move_speed = slow_move_speed
+	slow_timer.start(slow_time)
 
 func spawn():
 	# The demon already exists, but this gets it moving and chasing
 	target = get_tree().get_first_node_in_group("player")
 	can_move = true
+
+func _slow_timer_timeout():
+	move_speed = fast_move_speed
+
+func _ready():
+	slow_timer.process_mode = Node.PROCESS_MODE_PAUSABLE
+	add_child(slow_timer)
+	slow_timer.timeout.connect(_slow_timer_timeout)
 
 func _physics_process(_delta):
 	if can_move and is_instance_valid(target):

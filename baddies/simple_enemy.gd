@@ -1,12 +1,23 @@
 extends CharacterBody2D
 
-@export var speed = 50
+@export var speed = 200
 @export var gravity: float = 1000.0
+@export var health: int = 5
+
+@onready var death_sound = $DeathSound
+@onready var damage_sound = $DamageSound
 
 var facing = 1
 
 func take_damage():
-	print("enemy take damage")
+	health -= 1
+
+	if health == 0:
+		death_sound.play()
+		await death_sound.finished
+		queue_free()
+	else:
+		damage_sound.play()
 
 func _physics_process(delta):
 	velocity.y += gravity*delta
@@ -23,6 +34,3 @@ func _physics_process(delta):
 		if collision.get_normal().x != 0:
 			facing = sign(collision.get_normal().x)
 			velocity.y = -100
-
-	if position.y > 10000:
-		queue_free()

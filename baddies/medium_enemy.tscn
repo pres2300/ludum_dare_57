@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://vgqckn05vn5g"]
+
+[ext_resource type="Script" uid="uid://b2ublgphs4n7o" path="res://baddies/medium_enemy.gd" id="1_0x77p"]
+[ext_resource type="Texture2D" uid="uid://xk6slm58qyp7" path="res://assets/sprites/baddies/medium_enemy.png" id="1_714v4"]
+[ext_resource type="AudioStream" uid="uid://dk0541b4epqlf" path="res://assets/sounds/enemy_damage.mp3" id="3_dbd42"]
+[ext_resource type="AudioStream" uid="uid://c6snyfk0nchg4" path="res://assets/sounds/enemy_death.mp3" id="3_uqihb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x77p"]
+atlas = ExtResource("1_714v4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbd42"]
+atlas = ExtResource("1_714v4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqihb"]
+atlas = ExtResource("1_714v4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns44o"]
+atlas = ExtResource("1_714v4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kd6y4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x77p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbd42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqihb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns44o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_714v4"]
+size = Vector2(32, 25)
+
+[node name="MediumEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 53
+script = ExtResource("1_0x77p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemy"]]
+sprite_frames = SubResource("SpriteFrames_kd6y4")
+autoplay = "default"
+frame_progress = 0.9661
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_714v4")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_uqihb")
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dbd42")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var move_speed: float = 400.0
 @export var jump_speed: float = -500.0
 
+@export var health: int = 10
+
 @export var has_jetpack: bool = false
 @export var has_bag_of_rocks: bool = false
 @export var has_knife: bool = false
@@ -33,9 +35,27 @@ extends CharacterBody2D
 var attacking: bool = false
 var attack_timer = Timer.new()
 
+var i_frames_timer = Timer.new()
+var i_frames_timer_count = 2
+var can_take_damage = true
+
 const throw_rock_timeout: float = 1.0
 const swipe_knife_timeout: float = 0.5
 const gun_shoot_timeout: float = 0.1
+
+signal dead
+
+func take_damage():
+	if not can_take_damage:
+		return
+
+	can_take_damage = false
+	health -= 1
+	i_frames_timer.start(i_frames_timer_count)
+
+	if health <= 0:
+		print("DEAD")
+		dead.emit()
 
 func shoot_gun():
 	gun_sound.play()
@@ -164,6 +184,9 @@ func equip(item_name: String):
 func _attack_timer_timeout():
 	attacking = false
 
+func _i_frames_timeout():
+	can_take_damage = true
+
 func _ready():
 	camera.limit_left = 0
 	camera.limit_right = get_viewport().get_visible_rect().size.x
@@ -172,6 +195,10 @@ func _ready():
 	attack_timer.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child(attack_timer)
 	attack_timer.timeout.connect(_attack_timer_timeout)
+
+	i_frames_timer.process_mode = Node.PROCESS_MODE_PAUSABLE
+	add_child(i_frames_timer)
+	i_frames_timer.timeout.connect(_i_frames_timeout)
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity*delta
