@@ -16,6 +16,7 @@ extends CharacterBody2D
 
 @onready var camera = $Camera2D
 @onready var player_sprite = $AnimatedSprite2D
+@onready var player_damage = $PlayerDamage
 
 @onready var jetpack_sprite = $JetpackEquipped
 @onready var jetpack_exhaust = $JetpackEquipped/CPUParticles2D
@@ -52,6 +53,7 @@ func take_damage():
 
 	can_take_damage = false
 	health -= 1
+	player_damage.play()
 	damage.emit(health)
 	i_frames_timer.start(i_frames_timer_count)
 

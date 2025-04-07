@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b7ayaqb01gc74"]
+[gd_scene load_steps=48 format=3 uid="uid://b7ayaqb01gc74"]
 
 [ext_resource type="Script" uid="uid://d130yf7pug272" path="res://main.gd" id="1_cegan"]
 [ext_resource type="FontFile" uid="uid://u02ecjjgywd3" path="res://assets/fonts/Kenney Thick.ttf" id="1_ig7tw"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://ix0if6638lr2" path="res://assets/sprites/items/gun.png" id="16_qsp4k"]
 [ext_resource type="AudioStream" uid="uid://i6rkm5hva566" path="res://assets/sounds/gunshot.mp3" id="17_kq58d"]
 [ext_resource type="AudioStream" uid="uid://bjommsilf6dxh" path="res://assets/sounds/throw_rock.mp3" id="18_seu75"]
+[ext_resource type="AudioStream" uid="uid://b3p18bgmjdncd" path="res://assets/sounds/game_over.mp3" id="23_d13ii"]
+[ext_resource type="AudioStream" uid="uid://dh1hofwaapwxr" path="res://assets/sounds/win.mp3" id="24_1u8w0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
 font = ExtResource("1_ig7tw")
@@ -317,6 +319,12 @@ position = Vector2(1152, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TitleLevel/RightBoundary"]
 shape = SubResource("WorldBoundaryShape2D_cegan")
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_d13ii")
+
+[node name="WinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_1u8w0")
 
 [connection signal="pressed" from="TitleScreen/TitleScreenUI/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="body_entered" from="TitleLevel/Player/KnifeEquipped" to="TitleLevel/Player" method="_on_knife_equipped_body_entered"]

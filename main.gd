@@ -24,11 +24,13 @@ func win_game():
 	win_screen = win_scene.instantiate()
 	add_child(win_screen)
 	win_screen.restart.connect(start_game)
+	$WinSound.play()
 
 func lose_game():
 	lose_screen = lose_scene.instantiate()
 	add_child(lose_screen)
 	lose_screen.restart.connect(start_game)
+	$GameOverSound.play()
 
 func _win():
 	level.queue_free()

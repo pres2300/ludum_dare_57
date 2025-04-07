@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ce7c1x043ucfe"]
+[gd_scene load_steps=34 format=3 uid="uid://ce7c1x043ucfe"]
 
 [ext_resource type="Script" uid="uid://bypvvate53xcl" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://bpprm2t2q81yw" path="res://assets/sprites/player/player_down.png" id="2_boad6"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://ok4rado4jrra" path="res://assets/sounds/knife_swipe.mp3" id="10_ebec5"]
 [ext_resource type="Texture2D" uid="uid://ix0if6638lr2" path="res://assets/sprites/items/gun.png" id="11_ebec5"]
 [ext_resource type="AudioStream" uid="uid://i6rkm5hva566" path="res://assets/sounds/gunshot.mp3" id="13_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://blrkl5q7207ea" path="res://assets/sounds/player_damage.mp3" id="15_wodsf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
 atlas = ExtResource("2_boad6")
@@ -171,6 +172,7 @@ color_ramp = SubResource("Gradient_yw30f")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="JetpackEquipped"]
 stream = ExtResource("4_yw30f")
+playback_type = 1
 parameters/looping = false
 
 [node name="PointLight2D" type="PointLight2D" parent="JetpackEquipped"]
@@ -209,5 +211,8 @@ stream = ExtResource("13_kb6p2")
 [node name="ThrowRockSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_hg6s5")
 volume_db = -3.747
+
+[node name="PlayerDamage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_wodsf")
 
 [connection signal="body_entered" from="KnifeEquipped" to="." method="_on_knife_equipped_body_entered"]
